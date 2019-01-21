@@ -6,7 +6,6 @@
 
 import React from "react";
 import { LOCALSTORAGE_SAVED_GIFS } from "../../utils/constants";
-
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -14,11 +13,28 @@ import { LOCALSTORAGE_SAVED_GIFS } from "../../utils/constants";
 class GifEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isHover: false };
+    this.state = { isHover: false, localData: null };
     this.handleClickSave = this.handleClickSave.bind(this);
     this.handleClickUnSave = this.handleClickUnSave.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  fetchData() {
+    if(this.props.id && !this.props.images){
+      const localData = JSON.parse(localStorage.getItem(`${LOCALSTORAGE_SAVED_GIFS}-${this.props.id}`));
+      this.setState({ localData })
+    }
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.fetchData();
+    }
   }
 
   handleMouseEnter() {
@@ -28,17 +44,24 @@ class GifEntry extends React.Component {
     this.setState({ isHover: false });
   }
 
-  handleClickUnSave(id) {
+  handleClickUnSave() {
     this.props.onClickUnSave(this.props.id);
   }
 
-  handleClickSave(id) {
-    this.props.onClickSave(this.props.id);
+  handleClickSave() {
+    this.props.onClickSave(this.props.id, { ...this.props });
   }
 
   render() {
-    const { id, images, source_tld, savedList } = this.props;
-    const { isHover } = this.state;
+    let { id, images, source_tld, savedList } = this.props;
+    const { isHover, localData } = this.state;
+    if(!images){
+      if(localData){
+        images = localData.images
+      } else {
+        return <p>loading...</p>
+      }
+    }
     const { url, width, height } = images.fixed_height;
     const { url: stillUrl } = images.fixed_height_still;
     const isSaved = savedList.includes(id);

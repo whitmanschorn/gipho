@@ -63,11 +63,13 @@ export default class HomePage extends React.PureComponent {
     });
   }
 
-  onClickSave(id) {
+  onClickSave(id, item) {
     const saved = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
     if (!saved.includes(id)) {
       saved.push(id);
       localStorage.setItem(LOCALSTORAGE_SAVED_GIFS, JSON.stringify(saved));
+      localStorage.setItem(`${LOCALSTORAGE_SAVED_GIFS}-${id}`, JSON.stringify(item));
+      console.log(`${LOCALSTORAGE_SAVED_GIFS}-${id}`);
       this.setState({ saved });
     }
   }
@@ -77,6 +79,7 @@ export default class HomePage extends React.PureComponent {
     if (saved.includes(id)) {
       saved = saved.filter(item => item !== id);
       localStorage.setItem(LOCALSTORAGE_SAVED_GIFS, JSON.stringify(saved));
+      localStorage.removeItem(`${LOCALSTORAGE_SAVED_GIFS}-${id}`)
       this.setState({ saved });
     }
   }
