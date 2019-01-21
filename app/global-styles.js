@@ -21,6 +21,22 @@ const GlobalStyle = createGlobalStyle`
     min-width: 100%;
   }
 
+  .search {
+    margin: 20px;
+  }
+
+  input {
+    border: 1px solid #222222;
+    padding: 2px;
+    margin: 5px 0px;
+  }
+
+  button {
+    border: 1px solid #222222;
+    padding: 2px;
+    margin: 5px;
+  }
+
   p,
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
