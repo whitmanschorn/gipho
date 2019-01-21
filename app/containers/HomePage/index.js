@@ -16,6 +16,7 @@ import Pagination from "components/Pagination";
 import GifEntry from "components/GifEntry";
 import { GIPHY_API_KEY } from "../../utils/secrets";
 import { LOCALSTORAGE_SAVED_GIFS } from "../../utils/constants";
+import { Link } from "react-router-dom";
 
 function objToQueryString(obj) {
   const keyValuePairs = [];
@@ -103,6 +104,7 @@ export default class HomePage extends React.PureComponent {
           <FormattedMessage {...messages.header} />
         </h1>
         <p>Look for gifs</p>
+        <Link to="/faves">Faves</Link>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
