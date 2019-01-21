@@ -31,6 +31,13 @@ const GlobalStyle = createGlobalStyle`
     margin: 5px 0px;
   }
 
+  .gif-entry {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #222222;
+  }
+
   button {
     border: 1px solid #222222;
     padding: 2px;
