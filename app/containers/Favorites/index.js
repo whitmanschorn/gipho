@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { compose } from "redux";
+import { Link } from "react-router-dom";
 
 import messages from "./messages";
 
@@ -18,6 +19,8 @@ export class Favorites extends React.Component {
     return (
       <div>
         <FormattedMessage {...messages.header} />
+        <Link to="/">Search</Link>
+
       </div>
     );
   }
