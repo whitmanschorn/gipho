@@ -49,9 +49,11 @@ export default class HomePage extends React.PureComponent {
   }
 
   handleInputChange(event) {
+
     const { name, value } = event.target;
+    console.log({ name, value });
     const { query } = this.state;
-    const newQueryState = { [name]: value, ...query };
+    const newQueryState = { ...query, [name]: value };
     this.setState({
       query: newQueryState
     });
