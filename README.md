@@ -7,6 +7,8 @@ Hello! This is a demo application demonstrating use of the giphy API.
 
 ```npm install```
 
+In `utils/secrets.js` add your giphy API key.
+
 ### Run
 
 ```npm run start```
