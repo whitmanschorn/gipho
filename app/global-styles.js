@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Major Mono Display', monospace;
+    font-size:44px;
   }
 
   input[type="text"] {
@@ -46,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
   max-width: 90%;
 }
 
+.gif-entry.card:hover {
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
 
 
   body.fontLoaded {
@@ -72,6 +77,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 5px;
     padding: 5px;
     border: 1px solid #222222;
+    font-size:14px;
+
   }
 
   button {

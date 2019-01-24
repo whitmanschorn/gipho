@@ -72,8 +72,8 @@ class GifEntry extends React.Component {
         onMouseLeave={this.handleMouseLeave}
       >
         <h1>{id}</h1>
-        {!isSaved && <button className="save" onClick={this.handleClickSave}><i class="fas fa-save"></i>Save</button>}
-        {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i class="far fa-save"></i>UnSave</button>}
+        {!isSaved && <button className="save" onClick={this.handleClickSave}><i className="fas fa-save"></i> Save</button>}
+        {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i className="far fa-save"></i> UnSave</button>}
         <h3>{source_tld || "source unknown"}</h3>
         <img src={isHover ? url : stillUrl} />
       </div>

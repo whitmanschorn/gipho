@@ -52,6 +52,7 @@ export default class HomePage extends React.PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
     this.onClickUnSave = this.onClickUnSave.bind(this);
+    this.onClickPagination = this.onClickPagination.bind(this);
   }
 
   handleInputChange(event) {
@@ -85,16 +86,21 @@ export default class HomePage extends React.PureComponent {
   }
 
   async handleSubmit(e) {
-    e.preventDefault();
-    const goodies = await fetch(
+    if (e) e.preventDefault();
+    const gifRequest = await fetch(
       `https://api.giphy.com/v1/gifs/search?${objToQueryString(
         this.state.query
       )}`,
       { mode: "cors" }
     );
-    const results = await goodies.json();
+    const results = await gifRequest.json();
     const { data, meta, pagination } = results;
     this.setState({ data, meta, pagination });
+  }
+
+  onClickPagination(queryUpdate) {
+    const newQuery = { ...this.state.query, ...queryUpdate };
+    this.setState({ query: newQuery }, this.handleSubmit);
   }
 
   render() {
@@ -103,33 +109,38 @@ export default class HomePage extends React.PureComponent {
       JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
     return (
       <div className="search">
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        <p>Look for gifs</p>
-        <Link to="/faves">Faves</Link>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Search for gifs"
-            name="q"
-            value={this.state.query.q}
-            onChange={this.handleInputChange}
-          />
-          <button>Go</button>
-        </form>
+        <div className="card">
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+          <p>Look for gifs</p>
+        </div>
+        <div className="card">
+          <Link to="/faves">Faves</Link>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="Search for gifs"
+              name="q"
+              value={this.state.query.q}
+              onChange={this.handleInputChange}
+            />
+            <button>Go</button>
+          </form>
+        </div>
         {data.length > 1 && (
-          <div>
+          <div className="card">
             {data.map((item, index) => (
               <GifEntry
-                {...item}
+                id={item.id}
+                images={item.images}
                 key={index}
                 savedList={savedList}
                 onClickSave={this.onClickSave}
                 onClickUnSave={this.onClickUnSave}
               />
             ))}
-            <Pagination {...pagination} />
+            <Pagination pagination={pagination} onClickPagination={this.onClickPagination} />
           </div>
         )}
       </div>
