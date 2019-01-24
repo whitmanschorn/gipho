@@ -40,11 +40,18 @@ export class Favorites extends React.Component {
     const { saved } = this.state;
     return (
       <div>
-        <FormattedMessage {...messages.header} />
-        <Link to="/">Search</Link>
-        <h3>{saved.length} saved images</h3>
-        <hr />
-        {saved.map((item, index) => <GifEntry key={index} id={item} savedList={saved} onClickUnSave={this.onClickUnSave} />)}
+        <div className="card">
+          <FormattedMessage {...messages.header} />
+        </div>
+        <div className="card">
+          <Link to="/">Search</Link>
+        </div>
+        <div className="card">
+          <h3>{saved.length} saved images</h3>
+        </div>
+        <div className="card">
+          {saved.map((item, index) => <GifEntry key={index} id={item} savedList={saved} onClickUnSave={this.onClickUnSave} />)}
+        </div>
       </div>
     );
   }

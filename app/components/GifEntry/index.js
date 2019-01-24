@@ -67,13 +67,13 @@ class GifEntry extends React.Component {
     const isSaved = savedList.includes(id);
     return (
       <div
-        className="gif-entry"
+        className="gif-entry card"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <h1>{id}</h1>
-        {!isSaved && <button onClick={this.handleClickSave}>Save</button>}
-        {isSaved && <button onClick={this.handleClickUnSave}>UnSave</button>}
+        {!isSaved && <button className="save" onClick={this.handleClickSave}><i class="fas fa-save"></i>Save</button>}
+        {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i class="far fa-save"></i>UnSave</button>}
         <h3>{source_tld || "source unknown"}</h3>
         <img src={isHover ? url : stillUrl} />
       </div>
