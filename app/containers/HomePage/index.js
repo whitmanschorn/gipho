@@ -51,6 +51,7 @@ export default class HomePage extends React.PureComponent {
       meta: {},
       pagination: {},
       previousQueryText: '',
+      error: '',
       saved: JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [],
       loading: false
     };
@@ -103,12 +104,18 @@ export default class HomePage extends React.PureComponent {
 
   async handleSubmit(e) {
     if (e) e.preventDefault();
-    const gifRequest = await fetch(
-      `https://api.giphy.com/v1/gifs/search?${objToQueryString(
-        this.state.query
-      )}`,
-      { mode: "cors" }
-    );
+    let gifRequest;
+    try {        
+      gifRequest = await fetch(
+        `https://api.giphy.com/v1/gifs/search?${objToQueryString(
+          this.state.query
+        )}`,
+        { mode: "cors" }
+      );
+    } catch(error) {
+      this.setState({ error: error.message })
+      return
+    }
     const results = await gifRequest.json();
     const { data, meta, pagination } = results;
     this.setState({ data, meta, pagination, previousQueryText: this.state.query.q });
@@ -120,7 +127,7 @@ export default class HomePage extends React.PureComponent {
   }
 
   render() {
-    const { data, pagination, query, previousQueryText } = this.state;
+    const { data, pagination, query, previousQueryText, error } = this.state;
     const savedList = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
     return (
       <div>
@@ -139,6 +146,7 @@ export default class HomePage extends React.PureComponent {
             <button>Go</button>
           </form>
         </div>
+        {error && <div className="card">error: {error}</div>}
 
         {data.length > 1 && (
           <div className="card">
@@ -157,9 +165,6 @@ export default class HomePage extends React.PureComponent {
             <Pagination pagination={pagination} onClickPagination={this.onClickPagination} />
           </div>
         )}
-        <div className="card">
-          <div> locations: <button onClick={this.setLanguageRU}>RU</button> <button>EN</button></div>
-        </div>
       </div>
     );
   }
