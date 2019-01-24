@@ -19,7 +19,7 @@ Visit `localhost:3000`
 
 ### Storage
 
-Data is storage in the localStorage of the browser. We used this in lieu of a more complex data store, but it is easy to image how the same keys used for localStorage, hashed by a user UUID, could be used to store the list of saved gifs and data for each individual gif.
+Data is storage in the `localStorage` of the browser. We used this in lieu of a more complex data store, but it is easy to image how the same keys used for `localStorage`, hashed by a user UUID, could be used to store the list of saved gifs and data for each individual gif.
 
 
 ### i18n
