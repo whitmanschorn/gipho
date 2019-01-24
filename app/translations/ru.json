@@ -1,0 +1,11 @@
+{
+  "app.components.GifEntry.header": "забывать",
+  "app.components.GifEntry.save": "Сохранить",
+  "app.containers.NotFoundPage.header": "Страница не найдена. Сожалею!",
+  "app.containers.Favorites.back": "вернуться к поиску",
+  "app.containers.Favorites.savedCount": "сохраненные изображения",
+  "app.containers.HomePage.header": "Поиск картинок",
+  "app.containers.Favorites.placeholder": "поиск сохраненных изображений",
+  "app.containers.Favorites.go": "идти",
+  "app.containers.HomePage.faves": "Избранные" 
+}
