@@ -6,6 +6,9 @@
 
 import React from "react";
 import { LOCALSTORAGE_SAVED_GIFS } from "../../utils/constants";
+import { FormattedMessage } from "react-intl";
+import messages from "./messages";
+
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -74,8 +77,8 @@ class GifEntry extends React.Component {
         onMouseLeave={this.handleMouseLeave}
       >
         <h1>{id}</h1>
-        {!isSaved && <button className="save" onClick={this.handleClickSave}><i className="fas fa-save"></i> Save</button>}
-        {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i className="far fa-save"></i> UnSave</button>}
+        {!isSaved && <button className="save" onClick={this.handleClickSave}><i className="fas fa-save"></i><FormattedMessage {...messages.save} /></button>}
+        {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i className="far fa-save"></i><FormattedMessage {...messages.unsave} /></button>}
         <h3>{source_tld || "source unknown"}</h3>
         {showQuery && <h3>{search || "query unknown"}</h3>}
         <img src={isHover ? url : stillUrl} />

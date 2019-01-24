@@ -1,1 +1,11 @@
-[]
+{
+  "app.components.GifEntry.header": "UnSave",
+  "app.components.GifEntry.save": "Save",
+  "app.containers.NotFoundPage.header": "Page not found! Sorry.",
+  "app.containers.Favorites.back": "back to search",
+  "app.containers.Favorites.savedCount": "saved images",
+  "app.containers.Favorites.placeholder": "Search Saved Gifs",
+  "app.containers.Favorites.go": "go",
+  "app.containers.HomePage.header": "Search for gifs",
+  "app.containers.HomePage.faves": "Faves" 
+}

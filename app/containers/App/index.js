@@ -19,6 +19,7 @@ import GlobalStyle from "../../global-styles";
 export default function App() {
   return (
     <div>
+      <div className="card"><h1>gipho</h1></div>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/faves" component={Favorites} />

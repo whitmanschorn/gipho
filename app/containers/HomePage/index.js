@@ -15,6 +15,7 @@ import { FormattedMessage } from "react-intl";
 import messages from "./messages";
 import Pagination from "components/Pagination";
 import GifEntry from "components/GifEntry";
+import { changeLocale } from "containers/LanguageProvider/actions"
 import { GIPHY_API_KEY } from "../../utils/secrets";
 import { LOCALSTORAGE_SAVED_GIFS } from "../../utils/constants";
 import { Link } from "react-router-dom";
@@ -120,18 +121,12 @@ export default class HomePage extends React.PureComponent {
 
   render() {
     const { data, pagination, query, previousQueryText } = this.state;
-    const savedList =
-      JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
+    const savedList = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
     return (
-      <div className="search">
+      <div>
         <div className="card">
-          <h1>
-            <FormattedMessage {...messages.header} />
-          </h1>
-          <Link to="/faves">Faves</Link>
-          <p>Look for gifs <button onClick={this.onRandom}><i class="fas fa-dice-three"></i> Random</button></p>
-        </div>
-        <div className="card">
+          <Link to="/faves"><FormattedMessage {...messages.faves} /></Link>
+          <p><FormattedMessage {...messages.header} /> <button onClick={this.onRandom}><i className="fas fa-dice-three"></i> Random</button></p>
 
           <form onSubmit={this.handleSubmit}>
             <input
@@ -143,8 +138,8 @@ export default class HomePage extends React.PureComponent {
             />
             <button>Go</button>
           </form>
-
         </div>
+
         {data.length > 1 && (
           <div className="card">
             {data.map((item, index) => (
@@ -162,6 +157,9 @@ export default class HomePage extends React.PureComponent {
             <Pagination pagination={pagination} onClickPagination={this.onClickPagination} />
           </div>
         )}
+        <div className="card">
+          <div> locations: <button onClick={this.setLanguageRU}>RU</button> <button>EN</button></div>
+        </div>
       </div>
     );
   }

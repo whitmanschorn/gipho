@@ -65,22 +65,21 @@ export class Favorites extends React.Component {
     return (
       <div>
         <div className="card">
-          <FormattedMessage {...messages.header} />
-        </div>
-        <div className="card">
-          <Link to="/">Search</Link>
-        </div>
-        <div className="card">
-          <h3>{saved.length} saved images</h3>
+          <Link to="/"><FormattedMessage {...messages.back} /></Link>
+          <h3>{saved.length} <FormattedMessage {...messages.savedCount} /></h3>
           <form onSubmit={this.updateFilters}>
-            <input
-              type="text"
-              placeholder="Search for gifs"
-              name="q"
-              value={query}
-              onChange={this.handleInputChange}
-            />
-            <button>Go</button>
+            <FormattedMessage {...messages.placeholder}>
+              {(msg) => (
+                <input
+                  type="text"
+                  placeholder={msg}
+                  name="q"
+                  value={query}
+                  onChange={this.handleInputChange}
+                />
+              )}
+            </FormattedMessage>
+            <button><FormattedMessage {...messages.go} /></button>
           </form>
         </div>
         <div className="card">
