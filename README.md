@@ -2,6 +2,7 @@
 
 Hello! This is a demo application demonstrating use of the giphy API.
 
+
 ### Install
 
 ```npm install```
