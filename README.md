@@ -1,3 +1,5 @@
+![200](https://user-images.githubusercontent.com/15174372/51656797-74547100-1f70-11e9-950b-c2fe1253c24d.gif)
+
 # Gipho
 Hello! This is a demo application demonstrating use of the giphy API.
 
@@ -32,6 +34,3 @@ to the following
 const DEFAULT_LOCALE = 'ru';
 ```
 in `app/i18n.js`
-
-![qrqxeagxhttfw](https://user-images.githubusercontent.com/15174372/51656751-4d963a80-1f70-11e9-9f73-3f5571d7385f.gif)
-
