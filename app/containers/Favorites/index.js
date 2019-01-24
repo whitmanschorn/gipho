@@ -48,7 +48,6 @@ export class Favorites extends React.Component {
       saved = saved.filter(item => {
         if(!query || !query.length) return true
         const localItem = JSON.parse(localStorage.getItem(`${LOCALSTORAGE_SAVED_GIFS}-${item}`))
-        console.log({localItem});
         return localItem !== null && (localItem.source_tld && localItem.source_tld.includes(query)) || (localItem.search && localItem.search.includes(query))
       })      
     }
