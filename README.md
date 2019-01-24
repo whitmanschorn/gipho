@@ -1,5 +1,5 @@
 # Gipho
-
+![qrqxeagxhttfw](https://user-images.githubusercontent.com/15174372/51656751-4d963a80-1f70-11e9-9f73-3f5571d7385f.gif)
 Hello! This is a demo application demonstrating use of the giphy API.
 
 ### Install
