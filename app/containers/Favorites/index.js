@@ -21,9 +21,12 @@ export class Favorites extends React.Component {
     super(props);
     this.state = {
       saved: JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [],
+      query: '',
     };
 
     this.onClickUnSave = this.onClickUnSave.bind(this);
+    this.updateFilters = this.updateFilters.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   onClickUnSave(id) {
@@ -36,8 +39,30 @@ export class Favorites extends React.Component {
     }
   }
 
+
+  updateFilters(e) {
+    if (e) e.preventDefault();
+    const { query } = this.state;
+    let saved = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVED_GIFS)) || [];
+    if(query && query.length) {
+      saved = saved.filter(item => {
+        if(!query || !query.length) return true
+        const localItem = JSON.parse(localStorage.getItem(`${LOCALSTORAGE_SAVED_GIFS}-${item}`))
+        console.log({localItem});
+        return localItem !== null && (localItem.source_tld && localItem.source_tld.includes(query)) || (localItem.search && localItem.search.includes(query))
+      })      
+    }
+    this.setState({ saved });
+  }
+
+
+  handleInputChange(event) {
+    event.preventDefault();
+    this.setState({ query: event.target.value });
+  }
+
   render() {
-    const { saved } = this.state;
+    const { saved, query } = this.state;
     return (
       <div>
         <div className="card">
@@ -48,9 +73,19 @@ export class Favorites extends React.Component {
         </div>
         <div className="card">
           <h3>{saved.length} saved images</h3>
+          <form onSubmit={this.updateFilters}>
+            <input
+              type="text"
+              placeholder="Search for gifs"
+              name="q"
+              value={query}
+              onChange={this.handleInputChange}
+            />
+            <button>Go</button>
+          </form>
         </div>
         <div className="card">
-          {saved.map((item, index) => <GifEntry key={index} id={item} savedList={saved} onClickUnSave={this.onClickUnSave} />)}
+          {saved.map((item, index) => <GifEntry showQuery key={index} id={item} savedList={saved} onClickUnSave={this.onClickUnSave} />)}
         </div>
       </div>
     );

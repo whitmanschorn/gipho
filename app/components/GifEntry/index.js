@@ -53,11 +53,13 @@ class GifEntry extends React.Component {
   }
 
   render() {
-    let { id, images, source_tld, savedList } = this.props;
+    let { id, images, source_tld, search, savedList, showQuery } = this.props;
     const { isHover, localData } = this.state;
     if(!images){
       if(localData){
         images = localData.images
+        search = localData.search
+        source_tld = localData.source_tld
       } else {
         return <p>loading...</p>
       }
@@ -75,6 +77,7 @@ class GifEntry extends React.Component {
         {!isSaved && <button className="save" onClick={this.handleClickSave}><i className="fas fa-save"></i> Save</button>}
         {isSaved && <button className="unsave" onClick={this.handleClickUnSave}><i className="far fa-save"></i> UnSave</button>}
         <h3>{source_tld || "source unknown"}</h3>
+        {showQuery && <h3>{search || "query unknown"}</h3>}
         <img src={isHover ? url : stillUrl} />
       </div>
     );

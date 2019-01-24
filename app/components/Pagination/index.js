@@ -10,7 +10,6 @@ import React from "react";
 
 function Pagination(props) {
   const PAGE_SIZE = 20
-  console.log('pagination', {props});
   const { pagination, onClickPagination } = props;
   const { offset, count, total_count } = pagination;
   const showPrev = offset > 0;
